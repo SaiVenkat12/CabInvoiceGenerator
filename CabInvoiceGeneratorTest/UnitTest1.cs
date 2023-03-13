@@ -65,8 +65,8 @@ namespace CabInvoiceGeneratorTest
             invoice.AddRides("Xyz", ride2);
             InvoiceSummary excepted1 = invoice.GetInvoiceSummary("Abc");
             InvoiceSummary excepted2 = invoice.GetInvoiceSummary("Xyz");
-            //Assert.AreEqual(3, excepted2.numbOfRides);
-            //Assert.AreEqual(153, excepted1.totalFare);
+            Assert.AreEqual(3, excepted2.numbOfRides);
+            Assert.AreEqual(153, excepted1.totalFare);
             Assert.AreEqual(77.5, excepted1.average);
         }
     }
