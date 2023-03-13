@@ -18,6 +18,21 @@ namespace CabInvoiceGeneratorTest
             //Assert
             Assert.AreEqual(actual, expected);
         }
+        [TestMethod]
+        public void Given_Distance_And_Time_Return_TotalFare_MultipleRides()
+        {
+            //Arrange
+            InvoiceGenerator invoice = new InvoiceGenerator();
+            Ride[] rides = new Ride[]
+            {
+                new Ride(5, 8, RideType.NORMAL),
+                new Ride(5, 10, RideType.PREMIUM),
+            };
+            //Act
+            double actual = invoice.CalculateFare(rides);
+            //Assert
+            Assert.AreEqual(actual, 153);
+        }
 
     }
 }
