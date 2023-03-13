@@ -29,9 +29,22 @@ namespace CabInvoiceGeneratorTest
                 new Ride(5, 10, RideType.PREMIUM),
             };
             //Act
-            double actual = invoice.CalculateFare(rides);
+            InvoiceSummary actual = invoice.CalculateFare(rides);
             //Assert
-            Assert.AreEqual(actual, 153);
+            Assert.AreEqual(actual.totalFare, 153);
+        }
+        public void Given_MultipleRide_Should_TotalRides_TotalFare_And_AverageFare()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator();
+            Ride[] rides = new Ride[]
+            {
+                new Ride(5, 8, RideType.NORMAL),
+                new Ride(5, 10, RideType.PREMIUM),
+            };
+            InvoiceSummary actual = invoice.CalculateFare(rides);
+            Assert.AreEqual(actual.totalFare, 153);
+            Assert.AreEqual(actual.average, 77.5);
+            Assert.AreEqual(actual.numbOfRides, 2);
         }
 
     }
