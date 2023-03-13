@@ -46,6 +46,28 @@ namespace CabInvoiceGeneratorTest
             Assert.AreEqual(actual.average, 77.5);
             Assert.AreEqual(actual.numbOfRides, 2);
         }
-
+        [TestMethod]
+        public void Given_UserID_Should_Return_ListofRides_Invoice()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator();
+            Ride[] ride1 = new Ride[]
+            {
+                new Ride(5, 8, RideType.NORMAL),
+                new Ride(5, 10, RideType.PREMIUM),
+            };
+            Ride[] ride2 = new Ride[]
+            {
+                new Ride(5, 8, RideType.NORMAL),
+                new Ride(9, 8, RideType.NORMAL),
+                new Ride(5, 10, RideType.PREMIUM),
+            };
+            invoice.AddRides("Abc", ride1);
+            invoice.AddRides("Xyz", ride2);
+            InvoiceSummary excepted1 = invoice.GetInvoiceSummary("Abc");
+            InvoiceSummary excepted2 = invoice.GetInvoiceSummary("Xyz");
+            //Assert.AreEqual(3, excepted2.numbOfRides);
+            //Assert.AreEqual(153, excepted1.totalFare);
+            Assert.AreEqual(77.5, excepted1.average);
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace CabInvoiceGenerator
 {
     public class InvoiceGenerator
     {
+        private RideRepository rideRepo;
         public double CalculateFare(Ride ride)
         {
             double totalFare = 0;
@@ -29,6 +30,15 @@ namespace CabInvoiceGenerator
                 totalFare += CalculateFare(ride);
             }
             return new InvoiceSummary(rides.Length, totalFare);
+        }
+        public void AddRides(string userId, Ride[] rides)
+        {
+            rideRepo.AddRide(userId, rides);
+        }
+        public InvoiceSummary GetInvoiceSummary(string userId)
+        {
+            Console.WriteLine("\nGetting userId =>{0}", userId);
+            return this.CalculateFare(rideRepo.GetRides(userId));
         }
     }
     

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CabInvoiceCustomException.cs" />
+    <Compile Include="RideRepository.cs" />
     <Compile Include="RideType.cs" />
     <Compile Include="InvoiceSummary.cs" />
     <Compile Include="InvoiceGenerator.cs" />
